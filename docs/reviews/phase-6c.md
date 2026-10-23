@@ -102,7 +102,7 @@ REL=/Users/duc/Developer/vkey-release-1.0.0
 git -C /Users/duc/Developer/mkey fetch origin
 MERGE=$(git -C /Users/duc/Developer/mkey rev-parse origin/main)       # commit squash của PR #1 — sẽ tag v1.0.0
 git -C /Users/duc/Developer/mkey log -1 --format='%h %s' $MERGE        # phải là commit squash PR #1
-git -C /Users/duc/Developer/mkey diff --stat a350c44 $MERGE            # phải rỗng (cây squash = cây đã review)
+git -C /Users/duc/Developer/mkey diff --stat a350c44 $MERGE -- . ':!docs/reviews'  # rỗng (cây squash = cây đã review)
 git -C /Users/duc/Developer/mkey diff --stat b296283 $MERGE -- Sources project.yml Vendor scripts tests .github  # rỗng
 cd $REL && git checkout --detach $MERGE && git status --short          # rỗng; build/ không bị đụng (gitignore)
 scripts/build-update-feed.sh build/release-1.0.0/VKey.app docs/releases/1.0.0.md build/update-1.0.0-r2 "$BIN"
