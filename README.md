@@ -65,9 +65,10 @@ Debug có bundle id riêng `io.github.akachick113.vkey.debug` và tên **VKey De
 2. Tải `VKey-<version>.zip` ở [GitHub Releases](https://github.com/akachick113/vkey/releases),
    giải nén, kéo `VKey.app` vào **Applications**. Cập nhật tự động chỉ chạy khi
    app nằm trực tiếp trong `/Applications`.
-3. App **chưa notarize**, nên lần mở đầu macOS có thể chặn: Cài đặt hệ thống →
-   Quyền riêng tư & Bảo mật → **Vẫn mở**; hoặc chạy
-   `xattr -dr com.apple.quarantine /Applications/VKey.app`.
+3. App **chưa notarize**, nên lần mở đầu macOS báo **“VKey” không được mở** (“VKey” Not Opened): bấm **Xong** (Done),
+   vào Cài đặt hệ thống → Quyền riêng tư & Bảo mật, cuối mục **Bảo mật** bấm **Vẫn mở** (Open Anyway) cạnh dòng về VKey,
+   rồi xác thực bằng Touch ID hoặc mật khẩu. Hoặc chạy `xattr -dr com.apple.quarantine /Applications/VKey.app` trước
+   khi mở.
 4. Cấp quyền **Trợ năng (Accessibility)**: Cài đặt hệ thống → Quyền riêng tư & Bảo mật →
    Trợ năng → bật **VKey** (tên file app). App tự phát hiện quyền và bắt đầu hoạt động,
    không cần mở lại.
@@ -85,4 +86,5 @@ kiểm thử và phát hành.
 
 ## Nguồn gốc & giấy phép
 
-VKey là bản sửa đổi dựa trên engine [OpenKey](https://github.com/tuyenvm/OpenKey)
+VKey là bản sửa đổi dựa trên engine [OpenKey](https://github.com/tuyenvm/OpenKey) (© Tuyen Mai), phát hành theo
+[GPL-3.0](LICENSE); ghi công đầy đủ tại [NOTICE.md](NOTICE.md).
