@@ -618,8 +618,7 @@ Review 8b: [`reviews/phase-8b.md`](./reviews/phase-8b.md) (Phần A 1 vòng Appr
 **Đã phát hành VKey 1.0.2 (2026-10-24, Claude chạy `gh release create` theo lệnh người dùng).** PR #5 squash `2c373fe`
 (= `2d9cbf6` đã review) = tag `v1.0.2`. Release `VKey 1.0.2` (Latest, không draft / pre-release) có `appcast.xml` (`44e0e1c4…`),
 `VKey-1.0.2.zip` (`d0993bb9…`), `VKey-1.0.2.md` (`979627e4…`) — tải từ GitHub trùng từng byte; `latest/download/appcast.xml`
-= feed 3 mục mới; zip 1.0.1 / 1.0.0 vẫn 200. Tài sản lưu ở `build/release-1.0.2-assets/`. Đang chờ bước 4 (kiểm chấp nhận của
-người dùng); sau đó xoá worktree `../vkey-release-1.0.2`.
+= feed 3 mục mới; zip 1.0.1 / 1.0.0 vẫn 200. Tài sản lưu ở `build/release-1.0.2-assets/`. Bước 4: xem "✅ Phase 8 xong".
 Quyết định đã chốt (Phase sau phải theo):
 - Phát hành bằng `gh` (cài 2026-10-24, đăng nhập `akachick113`, giao thức ssh): sau khi Claude kiểm tài sản đạt **và người dùng
   nói rõ "phát hành" cho bản đó**, Claude chạy từ worktree phát hành:
@@ -627,6 +626,19 @@ Quyết định đã chốt (Phase sau phải theo):
   docs/releases/<ver>.md --latest build/update-<ver>/{appcast.xml,VKey-<ver>.zip,VKey-<ver>.md}`, rồi tải lại so từng byte.
   Không bao giờ tự phát hành khi chưa có lời người dùng cho đúng bản đó. Build + ký vẫn trên máy (khoá trong Keychain, không CI).
 - Bản kế: build ≥ 5; tham số thứ năm = `appcast.xml` 1.0.2 (3 mục, tối đa 5).
+
+**✅ Phase 8 xong (2026-10-24).** Kiểm chấp nhận: người dùng cập nhật thật 1.0.1 → 1.0.2 qua GitHub — gõ được không cấp lại
+Trợ năng, công tắc nhỏ và trang Giới thiệu đúng; Claude kiểm `/Applications/VKey.app` = `1.0.2` / `4`, CDHash `e8a4ba61…` = bản
+phát hành, chữ ký pass, đang chạy. Worktree `../vkey-release-1.0.2` đã xoá (tài sản ở `build/release-1.0.2-assets/`).
+
+Còn tồn:
+- C1 — **ghi công mkey**: người dùng sửa `NOTICE.md` trên GitHub (`e9fa3a9`, sau 1.0.2) bỏ mục mkey (© Anh Tuấn, GPL-3.0) →
+  mkey không còn được ghi ở NOTICE, README, giao diện hay mã nguồn, trong khi phần SwiftUI / bridge / Sparkle của VKey sửa từ
+  mkey. Claude đã báo người dùng (GPL v3 yêu cầu giữ thông báo bản quyền của tác giả gốc — không phải tư vấn pháp lý); chờ người
+  dùng quyết có khôi phục một mục mkey trong `NOTICE.md` (không cần hiện trong giao diện) hay không.
+- C2 — nhánh đã merge trên GitHub xoá được: `phase-6c-gioi-thieu`, `phase-7a-hide-version-history`, `phase-7b-release-1.0.1`,
+  `phase-8a-gioi-thieu-cong-tac`, `phase-8b-release-1.0.2`.
+- C3 — thử tay bảng clipboard (HTML / ảnh / hover) và Tab + VoiceOver (từ Phase 7, các bước ở `reviews/phase-7a.md`).
 
 ## Ngoài phạm vi (ghi lại để không tự làm)
 - Target InputMethodKit (prototype ở `~/Desktop/ki12026/…/MKeyInputMethod`, không có git). Xem lại sau Phase 4 nếu cần.
