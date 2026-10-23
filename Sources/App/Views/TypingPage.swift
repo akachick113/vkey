@@ -192,7 +192,7 @@ struct TypingPage: View {
 
     private func switchRow(_ title: String, _ binding: Binding<Bool>, subtitle: String? = nil, disabled: Bool = false) -> some View {
         VKRow(title: title, subtitle: subtitle) {
-            Toggle(title, isOn: binding).labelsHidden().toggleStyle(.switch).tint(VKTheme.accent)
+            Toggle(title, isOn: binding).labelsHidden().toggleStyle(.switch).controlSize(.small).tint(VKTheme.accent)
                 .disabled(disabled)
         }
         .opacity(disabled ? 0.5 : 1)
@@ -350,6 +350,7 @@ private struct AXSupportAppRow: View {
 
             Toggle("", isOn: $isEnabled)
                 .toggleStyle(.switch)
+                .controlSize(.small)
                 .labelsHidden()
                 .accessibilityLabel("Hỗ trợ Trợ năng cho \(app.name)")
         }
