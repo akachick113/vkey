@@ -1,0 +1,35 @@
+# → .github/workflows/ci.yml
+# Mẫu cho Node. Stack khác: thay bước setup + cài. Chỉ sửa các chỗ {{…}};
+# `${{ github.ref }}` là cú pháp GitHub Actions, giữ nguyên.
+# Repo có sẵn đã có CI: không thay, chỉ đảm bảo CI chạy đúng CHECK_CMD trên mỗi PR.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main] # repo có sẵn: nhánh chính của repo
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc # hoặc node-version: "20"
+          cache: npm # pnpm / yarn: đổi cho khớp lockfile (pnpm cần thêm pnpm/action-setup trước bước này)
+
+      - name: Cài từ lockfile
+        run: npm ci # pnpm install --frozen-lockfile / yarn install --immutable
+
+      - name: Lint + typecheck + test
+        run: "{{CHECK_CMD}}"
+
+      - name: Format check
+        run: "{{FORMAT_CHECK_CMD}}" # xoá bước này nếu CHECK_CMD đã gồm format check

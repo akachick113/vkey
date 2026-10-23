@@ -1,0 +1,35 @@
+# → .gitignore ở gốc repo (đổi tên thành .gitignore). Repo có sẵn: chỉ thêm các dòng còn thiếu.
+
+# Dependency & build
+node_modules/
+dist/
+build/
+.next/
+.expo/
+coverage/
+*.tsbuildinfo
+
+# Môi trường & bí mật
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# DB / dữ liệu cục bộ
+*.sqlite
+*.db
+
+# Repo tham khảo clone vào trong repo (WORKFLOW §11)
+_refs/
+
+# Worktree review đặt trong repo (nếu không đặt ở ../)
+.review/
+
+# Hệ điều hành / editor / log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.log
