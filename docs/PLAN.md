@@ -548,6 +548,26 @@ old updates`, feed có **2 mục** (1.0.1 build 3 → `…/download/v1.0.1/…`;
    **lùi** = sửa Release v1.0.1 → tick "Set as a pre-release" → latest trở về v1.0.0 (feed 1.0.0), không ai nhận 1.0.1.
 5. Dọn: chép 3 tài sản sang `build/release-1.0.1-assets/`, xoá worktree phát hành (người dùng chạy lệnh).
 
+Review 7b: [`reviews/phase-7b.md`](./reviews/phase-7b.md) (Phần A 1 vòng Approved; Phần B Claude kiểm tài sản đạt).
+
+**✅ Phase 7 xong — VKey 1.0.1 đã phát hành (2026-10-24).** PR #3 squash `f447469` (= `2a97b95` đã review) = tag `v1.0.1`.
+Release `VKey 1.0.1` (latest) có `appcast.xml` (`66d4bdd4…`), `VKey-1.0.1.zip` (`a5c8aff4…`), `VKey-1.0.1.md` (`5e079fdb…`) —
+tải từ GitHub trùng từng byte; feed 2 mục (1.0.1 build 3, 1.0.0 build 2 giữ nguyên), chữ ký hợp lệ, zip 1.0.0 vẫn 200.
+**Cập nhật thật 1.0.0 → 1.0.1 qua GitHub** trên `/Applications/VKey.app` của người dùng: app mở lại (PID đổi), CDHash
+`093b3a34…` = bản phát hành, gõ tiếng Việt ngay không cấp lại Trợ năng; "Kiểm tra cập nhật…" → 1.0.1 mới nhất, chỉ còn nút OK.
+Quyết định đã chốt (Phase sau phải theo):
+- Bản vá nhỏ: bỏ được bước feed cục bộ + bản `old` (UPDATES bước 4); kiểm chấp nhận = cập nhật thật qua GitHub; cách lùi =
+  đánh dấu Release mới là pre-release. Bản có đổi đường gõ / cài đặt / ký → vẫn làm đủ bước 4.
+- Đổi version: sửa text 2 dòng `<string>` trong `Info.plist`, không ghi bằng `PlistBuddy`.
+- Bản kế: build ≥ 4; tham số thứ năm của `build-update-feed.sh` = `appcast.xml` đang phát hành (đã có 2 mục, tối đa 5).
+- Tài sản đã phát hành lưu ở `build/release-<version>-assets/` (không commit).
+
+Còn tồn:
+- C1 — thử tay bảng clipboard (HTML / ảnh / hover) và Tab + VoiceOver (các bước ở `reviews/phase-7a.md`).
+- C2 — nhánh đã merge trên GitHub: `phase-6c-gioi-thieu`, `phase-7a-hide-version-history`, `phase-7b-release-1.0.1` → xoá được.
+- C3 — worktree `/Users/duc/Developer/vkey-release-1.0.1` chờ người dùng xoá.
+- Cảnh báo deprecated `activateIgnoringOtherApps` (`ClipboardManager.swift`, `ClipboardPicker.swift`) vẫn ở "Ngoài phạm vi".
+
 ## Ngoài phạm vi (ghi lại để không tự làm)
 - Target InputMethodKit (prototype ở `~/Desktop/ki12026/…/MKeyInputMethod`, không có git). Xem lại sau Phase 4 nếu cần.
 - Sửa cảnh báo deprecated `activateIgnoringOtherApps`.
