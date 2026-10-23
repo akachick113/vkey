@@ -5,7 +5,7 @@ import Sparkle
 /// Sparkle is responsible for version comparison, signatures, downloads,
 /// installation and relaunch. Keep one updater for the lifetime of the app.
 @MainActor
-final class UpdateChecker: NSObject, ObservableObject, SPUUpdaterDelegate {
+final class UpdateChecker: NSObject, ObservableObject, SPUUpdaterDelegate, SPUStandardUserDriverDelegate {
     static let shared = UpdateChecker()
 
     enum Status: Equatable {
@@ -24,7 +24,7 @@ final class UpdateChecker: NSObject, ObservableObject, SPUUpdaterDelegate {
     private var started = false
     private var subscriptions = Set<AnyCancellable>()
     private lazy var controller = SPUStandardUpdaterController(
-        startingUpdater: false, updaterDelegate: self, userDriverDelegate: nil
+        startingUpdater: false, updaterDelegate: self, userDriverDelegate: self
     )
 
     private override init() {
@@ -128,6 +128,11 @@ final class UpdateChecker: NSObject, ObservableObject, SPUUpdaterDelegate {
                 NSLocalizedDescriptionKey: availabilityNotice ?? "Không thể cập nhật tại vị trí này."
             ])
         }
+    }
+
+    // Release notes are a raw Markdown asset; browsers download it instead of showing it.
+    nonisolated func standardUserDriverShouldShowVersionHistory(for item: SUAppcastItem) -> Bool {
+        false
     }
 
     func updater(_ updater: SPUUpdater, didFindValidUpdate item: SUAppcastItem) {
