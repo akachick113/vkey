@@ -568,6 +568,22 @@ Còn tồn:
 - C3 — worktree `/Users/duc/Developer/vkey-release-1.0.1` chờ người dùng xoá.
 - Cảnh báo deprecated `activateIgnoringOtherApps` (`ClipboardManager.swift`, `ClipboardPicker.swift`) vẫn ở "Ngoài phạm vi".
 
+## Phase 8 — Tinh chỉnh giao diện sau VKey 1.0.1
+Người dùng chốt 2026-10-24 (xem bản 1.0.1): Giới thiệu ghi tên **Trung Đức** (giữ `akachick113`); rút gọn ghi công dưới cùng như
+ghi chú phát hành (bỏ câu "Dựa trên mã nguồn mở OpenKey … mkey …", giữ 3 link Mã nguồn · Ghi công · Giấy phép GPL v3);
+công tắc trong cửa sổ cài đặt nhỏ lại. **Thay quyết định 5a** "một dòng ghi công trong trang Giới thiệu": trong giao diện, ghi
+công chỉ còn link **Ghi công** (→ `NOTICE.md`) + link giấy phép; `NSHumanReadableCopyright` = `VKey © 2026 Trung Đức
+(akachick113). GPL v3.`; `NOTICE.md`, README, header © trong `Sources/Engine/` giữ nguyên (GPL v3 §5 — link Ghi công phải còn).
+
+Claude đã đo (macOS 27.0.1): switch mặc định 54 × 24 pt, `.small` 44 × 20 pt, `.mini` 36 × 16 pt → chọn `.small`. Chỉ 3 chỗ
+dùng `.switch` (`VKSwitchRow`, `TypingPage.switchRow`, `AXSupportAppRow`); Toggle trong menu thanh menu không đổi.
+
+Các bước:
+- **8a** (Codex, Luna · Medium) — 4 file, 2 commit. Prompt: [`prompts/phase-8a.md`](./prompts/phase-8a.md). Review: Claude chạy
+  bản Debug (chưa cấp Trợ năng nên không tranh event tap với `/Applications/VKey.app`), chụp Bộ gõ / Gõ tắt / Hệ thống /
+  Giới thiệu ở nền tối + sáng.
+- **8b** — phát hành **1.0.2 (build 4)**? Chờ người dùng chốt (bản vá chỉ đổi giao diện → theo quy trình bản vá của 7b).
+
 ## Ngoài phạm vi (ghi lại để không tự làm)
 - Target InputMethodKit (prototype ở `~/Desktop/ki12026/…/MKeyInputMethod`, không có git). Xem lại sau Phase 4 nếu cần.
 - Sửa cảnh báo deprecated `activateIgnoringOtherApps`.

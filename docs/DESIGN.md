@@ -64,7 +64,7 @@ giữa hàng thụt 16 hai bên. Bo góc: thẻ 12, segmented 9 (ô trong 6), n�
 - `VKKeycap("英数")` — một phím; `VKKeycapRow` nhiều phím cách nhau chữ "hoặc".
 - `VKBanner(message:, actionTitle:, action:)` — nền / viền / chữ / icon theo token cảnh báo; icon tam giác SF Symbol
   `exclamationmark.triangle`.
-- Switch: `Toggle(…).toggleStyle(.switch).tint(VKTheme.accent)`; popup: `Picker(…).pickerStyle(.menu)`.
+- Switch: `Toggle(…).toggleStyle(.switch).controlSize(.small).tint(VKTheme.accent)` (cỡ nhỏ từ Phase 8); popup: `Picker(…).pickerStyle(.menu)`.
 
 ## 5. Cửa sổ cài đặt
 - Kích thước 860 × 600 (tối thiểu 860 × 560, chỉ cao thêm được). Thanh tiêu đề ẩn, giữ nút đèn giao thông, kéo được bằng nền.
@@ -174,8 +174,9 @@ Dùng cùng `VKTheme` + thành phần §4; nội dung / tuỳ chọn giữ nguy�
   `keycapBorder` + chữ `textSecondary`; bỏ mọi gradient.
 - **Hệ thống:** thẻ `KHỞI ĐỘNG`, `BIỂU TƯỢNG`, `CHUYỂN CHẾ ĐỘ THÔNG MINH`, `ỨNG DỤNG LOẠI TRỪ`, `TƯƠNG THÍCH NÂNG CAO`,
   `CẬP NHẬT`; nút `Khôi phục mặc định` kiểu nút viền ở cuối.
-- **Giới thiệu:** icon app 96 pt, `VKey` 28 pt bold, `Phiên bản x (build)`, `Phát triển bởi akachick113 · © 2026`, dòng ghi
-  công 11 pt `textSecondary`, 3 link `accentText` (Mã nguồn · Ghi công · Giấy phép GPL v3), nút Kiểm tra cập nhật.
+- **Giới thiệu:** icon app 96 pt, `VKey` 28 pt bold, `Phiên bản x (build)`, `Phát triển bởi Trung Đức (akachick113) · © 2026`
+  11 pt `textSecondary`, 3 link `accentText` (Mã nguồn · Ghi công · Giấy phép GPL v3), nút Kiểm tra cập nhật. Không có câu
+  ghi công riêng (Phase 8: link Ghi công thay cho câu đó).
 - **Chào mừng:** nền `windowBackground`, icon app 96, `Chào mừng đến với VKey` 24 bold, một câu mô tả, thẻ hướng dẫn cấp
   quyền Trợ năng với nút chính nền `accent` `Mở Cài đặt hệ thống`, trạng thái chờ / đã cấp như cũ.
 
