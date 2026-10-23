@@ -517,6 +517,37 @@ Các bước:
   `appcast.xml` 1.0.0 làm tham số thứ năm) + **cập nhật thật 1.0.0 → 1.0.1** trên `/Applications/VKey.app` của người dùng qua
   feed GitHub sau khi upload. Claude viết prompt 7b khi 7a merge.
 
+Review 7a: [`reviews/phase-7a.md`](./reviews/phase-7a.md) (1 vòng, Approved; C2 Chào mừng nền sáng đạt, ảnh trong
+`reviews/assets/`).
+
+**✅ 7a xong (PR #2 của `vkey`, squash `2cd2168` = nội dung `7d9d26b` đã review).** Quyết định đã chốt:
+- `UpdateChecker` là `SPUStandardUserDriverDelegate`, `standardUserDriverShouldShowVersionHistory(for:)` = `false` (`nonisolated`).
+- Ca 79 nằm trong smoke (`tests/UpdateControllerSmoke.swift`), chạy bằng `tests/run-update-smoke.py FEED` — không có trong
+  `check.sh`; mọi lần phát hành phải chạy smoke.
+- Tiêu đề squash `2cd2168` thiếu tiền tố Conventional Commits (GitHub lấy tên PR) → khi merge, sửa tiêu đề thành
+  `fix: …` / `feat: …`.
+- Ca mới đánh số từ **80**.
+
+Còn tồn: C2 phần thử tay (bảng clipboard HTML / ảnh / hover; Tab + VoiceOver) — người dùng làm khi tiện, các bước ở
+`reviews/phase-7a.md`.
+
+### 7b — kế hoạch chi tiết (Claude, 2026-10-24)
+Đã đo trước (worktree tạm @ `2cd2168`, Info.plist tạm `1.0.1` / `3`): build Release universal + `sign-release.sh` pass;
+`build-update-feed.sh … "$BIN" <appcast 1.0.0 tải từ GitHub>` → `Wrote 1 new update, updated 0 existing updates, and removed 0
+old updates`, feed có **2 mục** (1.0.1 build 3 → `…/download/v1.0.1/…`; 1.0.0 build 2 giữ nguyên URL + chữ ký cũ),
+`verify-update-feed.py` pass; smoke với feed đó 4/4 (gồm ca 79).
+1. **7b-1** (Codex, Luna · High, PR #3) — prompt [`prompts/phase-7b.md`](./prompts/phase-7b.md) Phần A: `1.0.1` / `3` +
+   `docs/releases/1.0.1.md`. Claude review → người dùng squash merge (tiêu đề `chore: …`).
+2. **7b-2** (Codex, cùng session) — Phần B: build + ký + feed có tham số thứ năm + smoke trong worktree
+   `../vkey-release-1.0.1` từ commit merge. Không commit. Claude kiểm tài sản.
+3. **Người dùng phát hành** — tag `v1.0.1` = commit merge, Release `VKey 1.0.1` (latest) + 3 file.
+4. **Kiểm chấp nhận = cập nhật thật 1.0.0 → 1.0.1 qua GitHub** trên `/Applications/VKey.app` của người dùng: thấy 1.0.1 →
+   "Cài đặt và mở lại" → 1.0.1 / 3, gõ được không cấp lại Trợ năng; "Kiểm tra cập nhật…" lần nữa → chỉ có nút OK.
+   **Bỏ bước 4 của UPDATES (feed cục bộ + bản `old`)** cho bản vá này — Claude chọn: cùng quy trình ký đã kiểm đủ ở 6c, mã chỉ
+   đổi hộp thoại "đã mới nhất" (smoke phủ), và đường GitHub thật kiểm sát hơn; đổi lại phải có cách lùi:
+   **lùi** = sửa Release v1.0.1 → tick "Set as a pre-release" → latest trở về v1.0.0 (feed 1.0.0), không ai nhận 1.0.1.
+5. Dọn: chép 3 tài sản sang `build/release-1.0.1-assets/`, xoá worktree phát hành (người dùng chạy lệnh).
+
 ## Ngoài phạm vi (ghi lại để không tự làm)
 - Target InputMethodKit (prototype ở `~/Desktop/ki12026/…/MKeyInputMethod`, không có git). Xem lại sau Phase 4 nếu cần.
 - Sửa cảnh báo deprecated `activateIgnoringOtherApps`.
