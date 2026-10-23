@@ -425,7 +425,8 @@ người dùng cấp lại quyền Trợ năng).
 Còn tồn (đưa vào 6c):
 - C1 — bản Release phải universal: kiểm `lipo -archs` = `x86_64 arm64` trước khi upload (Debug chỉ `arm64`).
 - C2 — danh sách Trợ năng hiện icon `mkey` cũ cạnh mục VKey Debug (cache icon của macOS; `AppIcon.icns` trong bản build là icon
-  VKey) → kiểm lại với bản cài ở `/Applications`.
+  VKey) → kiểm lại với bản cài ở `/Applications`. Nguyên nhân (2026-10-24): build tăng dần không đổi ngày sửa thư mục `.app`
+  (vẫn từ 5a) nên cache không làm mới; `touch` app + `lsregister -f` + `killall Dock` → người dùng xác nhận icon đúng.
 - C3 — chưa kiểm từ 5d: Chào mừng nền sáng; bảng clipboard HTML / ảnh / hover; Tab bằng phím thật + VoiceOver.
 
 **✅ 6b xong (2026-10-24, Claude + người dùng).** Quyết định đã chốt (Phase sau phải theo):
