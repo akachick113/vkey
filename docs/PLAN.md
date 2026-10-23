@@ -613,6 +613,21 @@ update, updated 0 existing updates, and removed 0 old updates`, feed **3 mục**
    Lùi = đánh dấu Release v1.0.2 là pre-release.
 5. Dọn: chép 3 tài sản sang `build/release-1.0.2-assets/`, xoá worktree phát hành (người dùng chạy lệnh).
 
+Review 8b: [`reviews/phase-8b.md`](./reviews/phase-8b.md) (Phần A 1 vòng Approved; Phần B Claude kiểm tài sản đạt).
+
+**Đã phát hành VKey 1.0.2 (2026-10-24, Claude chạy `gh release create` theo lệnh người dùng).** PR #5 squash `2c373fe`
+(= `2d9cbf6` đã review) = tag `v1.0.2`. Release `VKey 1.0.2` (Latest, không draft / pre-release) có `appcast.xml` (`44e0e1c4…`),
+`VKey-1.0.2.zip` (`d0993bb9…`), `VKey-1.0.2.md` (`979627e4…`) — tải từ GitHub trùng từng byte; `latest/download/appcast.xml`
+= feed 3 mục mới; zip 1.0.1 / 1.0.0 vẫn 200. Tài sản lưu ở `build/release-1.0.2-assets/`. Đang chờ bước 4 (kiểm chấp nhận của
+người dùng); sau đó xoá worktree `../vkey-release-1.0.2`.
+Quyết định đã chốt (Phase sau phải theo):
+- Phát hành bằng `gh` (cài 2026-10-24, đăng nhập `akachick113`, giao thức ssh): sau khi Claude kiểm tài sản đạt **và người dùng
+  nói rõ "phát hành" cho bản đó**, Claude chạy từ worktree phát hành:
+  `gh release create v<ver> --repo akachick113/vkey --target <MERGE đủ 40 ký tự> --title "VKey <ver>" --notes-file
+  docs/releases/<ver>.md --latest build/update-<ver>/{appcast.xml,VKey-<ver>.zip,VKey-<ver>.md}`, rồi tải lại so từng byte.
+  Không bao giờ tự phát hành khi chưa có lời người dùng cho đúng bản đó. Build + ký vẫn trên máy (khoá trong Keychain, không CI).
+- Bản kế: build ≥ 5; tham số thứ năm = `appcast.xml` 1.0.2 (3 mục, tối đa 5).
+
 ## Ngoài phạm vi (ghi lại để không tự làm)
 - Target InputMethodKit (prototype ở `~/Desktop/ki12026/…/MKeyInputMethod`, không có git). Xem lại sau Phase 4 nếu cần.
 - Sửa cảnh báo deprecated `activateIgnoringOtherApps`.

@@ -27,3 +27,12 @@ phát hành. Giải nén zip → app `1.0.2` / `4`, universal, `codesign --verif
 `e8a4ba6185273bd45303c62b4147a7a5a3ccad92` (= `build/release-1.0.2/VKey.app`), DR như 1.0.0 / 1.0.1;
 `NSHumanReadableCopyright` mới. Smoke 4/4 (báo cáo; Claude đã chạy cùng quy trình khi đo trước). Không chạy feed cục bộ / bản
 `old` (quy trình bản vá). **Sẵn sàng phát hành.**
+
+## Phát hành (Claude, 2026-10-24 — người dùng bảo "Phát hành VKey 1.0.2 đi")
+`gh auth status` → `akachick113`. Trước khi tạo: worktree phát hành @ `2c373fe`, sạch, SHA-256 3 file không đổi.
+`gh release create v1.0.2 --target 2c373fef… --title "VKey 1.0.2" --notes-file docs/releases/1.0.2.md --latest <3 file>` →
+`https://github.com/akachick113/vkey/releases/tag/v1.0.2`. Sau khi tạo: `VKey 1.0.2` **Latest**, không draft / pre-release,
+đủ 3 asset; tag `v1.0.2` → `2c373fe`; `VKey-1.0.2.zip`, `VKey-1.0.2.md` tải từ `download/v1.0.2/` và `appcast.xml` tải từ
+`latest/download/` **trùng từng byte** bản đã kiểm; zip 1.0.1, 1.0.0 vẫn 200.
+
+Còn lại: kiểm chấp nhận (PLAN 8b bước 4) — người dùng cập nhật thật 1.0.1 → 1.0.2 trên `/Applications/VKey.app`.
