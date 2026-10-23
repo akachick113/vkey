@@ -428,6 +428,33 @@ Còn tồn (đưa vào 6c):
   VKey) → kiểm lại với bản cài ở `/Applications`.
 - C3 — chưa kiểm từ 5d: Chào mừng nền sáng; bảng clipboard HTML / ảnh / hover; Tab bằng phím thật + VoiceOver.
 
+**✅ 6b xong (2026-10-24, Claude + người dùng).** Quyết định đã chốt (Phase sau phải theo):
+- `origin` = `akachick113/vkey` (**private**). `main` bắt đầu bằng `b766993` (orphan, cây = `a97d8c7` của `mkey-jis`) +
+  `323ec6e` (docs remote: CLAUDE, AGENTS, codebase-map). CI xanh trên repo mới (người dùng xem).
+- `archive` = `akachick113/mkey-jis` (private, lưu trữ lịch sử Phase 0–6a, PR #1–#10). `upstream` = `maclifevn/mkey` giữ để
+  fetch. Cả hai đặt `tagOpt --no-tags`; 12 tag `v1.x` của mkey ở local đã xoá (trùng tên `v1.0.0` của VKey) — đừng fetch tag
+  từ hai remote này.
+- Số PR ở repo mới bắt đầu lại từ #1; review / PLAN cũ nhắc "PR #n" là PR của `mkey-jis`.
+- `git push` lên repo mới lần đầu bị chế độ tự động của Claude Code chặn (đẩy dữ liệu ra remote mới) → người dùng tự chạy.
+  Push tag / Release luôn do người dùng làm.
+- Trước khi public: Claude quét cây — không có khoá, token, `.p12`, `.env`. Email Apple ID nằm trong tên chứng chỉ ký
+  (`UPDATES.md`, `sign-release.sh`, test) và vốn hiện trong chữ ký app phát hành.
+
+### 6c — kế hoạch chi tiết (Claude, 2026-10-24)
+Đã đo trước trên `origin/main` @ `323ec6e`: build Release universal (`x86_64 arm64`), `sign-release.sh` → 6 thành phần pass,
+DR = `identifier "io.github.akachick113.vkey" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development:
+akachick113@gmail.com (BCHZ2Y26CN)" …`; `generate_keys --account io.github.akachick113.vkey -p` ở checkout chính = `SUPublicEDKey`,
+không hỏi Keychain; chứng chỉ hết hạn 2027-08-11.
+1. **6c-1 (Codex, Sol · Medium, không PR)** — prompt [`prompts/phase-6c.md`](./prompts/phase-6c.md): build + ký + feed thật +
+   cập nhật cục bộ `old` → 1.0.0 + **Gatekeeper trước phát hành** (tải `VKey-1.0.0.zip` bằng Safari từ server cục bộ, giải nén
+   bằng Finder, mở bằng Finder) + smoke. Không commit. Lệch tài liệu (README bước 3, ghi chú phát hành) → dừng, ghi báo cáo;
+   sửa bằng PR nhỏ rồi build lại từ commit mới (chưa phát hành nên không tốn build).
+2. **Claude review** — kiểm lại tài sản (chữ ký, `lipo`, feed, smoke) + giao diện trước phát hành trên bản Release ở
+   `/Applications` (Còn tồn 6a C2, C3).
+3. **Người dùng phát hành** — public repo → tag `v1.0.0` trỏ commit đã build → Release `VKey 1.0.0` + 3 file (UPDATES bước 6).
+4. **Kiểm sau phát hành** (Claude + người dùng) — UPDATES bước 7: chữ ký feed thật, zip 200, tải bằng trình duyệt từ GitHub,
+   "Kiểm tra cập nhật…" báo đã mới nhất.
+
 **Done khi (Phase 6):** repo `akachick113/vkey` public, CI xanh; Release `v1.0.0` là latest với `appcast.xml`,
 `VKey-1.0.0.zip`, `VKey-1.0.0.md`; chữ ký feed hợp lệ; cài từ zip tải bằng trình duyệt chạy được theo README; "Kiểm tra
 cập nhật…" báo đã mới nhất.
