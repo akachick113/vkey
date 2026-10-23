@@ -511,8 +511,11 @@ Các bước:
   quyền Trợ năng nên cửa sổ Chào mừng hiện; bảng clipboard có mục HTML / ảnh / hover; Tab + VoiceOver nhờ người dùng thử tay).
   Không chạy Debug cùng lúc với `/Applications/VKey.app`.
 - **C3** — xoá nhánh `phase-6c-gioi-thieu` đã merge trên GitHub (người dùng, nút "Delete branch" ở PR #1).
-- **7b** — phát hành **1.0.1 (build 3)** theo `UPDATES.md` (lần đầu có feed cũ làm tham số thứ năm). Người dùng chọn thời
-  điểm: ngay sau 7a, hoặc gộp thêm việc khác.
+- **7b** — phát hành **1.0.1 (build 3)** theo `UPDATES.md` (lần đầu có feed cũ làm tham số thứ năm). Người dùng chốt
+  2026-10-24: **ngay sau khi 7a merge**, chỉ gồm thay đổi của 7a. Gồm: PR version `1.0.1` / `3` + `docs/releases/1.0.1.md`
+  (không gộp vào 7a: smoke 7a dùng feed 1.0.0 build 2, đổi build làm hỏng kịch bản `available`); rồi build + ký + feed (có
+  `appcast.xml` 1.0.0 làm tham số thứ năm) + **cập nhật thật 1.0.0 → 1.0.1** trên `/Applications/VKey.app` của người dùng qua
+  feed GitHub sau khi upload. Claude viết prompt 7b khi 7a merge.
 
 ## Ngoài phạm vi (ghi lại để không tự làm)
 - Target InputMethodKit (prototype ở `~/Desktop/ki12026/…/MKeyInputMethod`, không có git). Xem lại sau Phase 4 nếu cần.
