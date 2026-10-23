@@ -474,6 +474,23 @@ chốt (Phase sau phải theo):
 
 Còn tồn (kiểm sau phát hành): 6a C3 (Chào mừng nền sáng; bảng clipboard HTML / ảnh / hover; Tab + VoiceOver).
 
+**✅ Phase 6 xong — VKey 1.0.0 đã phát hành (2026-10-24).** Repo `akachick113/vkey` public; tag `v1.0.0` = `445265f`; Release
+`VKey 1.0.0` (latest, không prerelease) có `appcast.xml`, `VKey-1.0.0.zip`, `VKey-1.0.0.md` — Claude tải về: SHA-256 trùng bộ
+đã kiểm, `sign_update --verify` feed `…/releases/latest/download/appcast.xml` pass, `verify-update-feed.py` pass. Người dùng tải zip
+bằng Safari từ GitHub, cài theo README (Vẫn mở + Touch ID), gõ được; "Kiểm tra cập nhật…" → "Bạn đang dùng phiên bản mới nhất!
+VKey 1.0.0…". `/Applications/VKey.app` CDHash `f873fef1…`.
+- Dọn: worktree phát hành đã xoá; bản sao 3 tài sản + log ở `build/release-1.0.0-assets/` (không commit); VKey Debug cũ vào
+  Thùng rác (phase sau build lại + cấp lại Trợ năng; **không** chạy cùng lúc với `/Applications/VKey.app`).
+- Bản phát hành kế: `build-update-feed.sh` truyền feed đang phát hành làm tham số thứ năm (UPDATES bước 5); build phải > 2.
+
+Còn tồn (phase sau):
+- C1 — hộp thoại "đã mới nhất" của Sparkle có nút **Lịch sử phiên bản** mở `VKey-1.0.0.md` thô (trình duyệt tải file về).
+  Người dùng thấy thừa → quyết định ẩn (`SPUStandardUserDriverDelegate.standardUserDriverShouldShowVersionHistoryForAppcastItem`
+  trả `false`, truyền `userDriverDelegate` ở `UpdateChecker.swift:27`) hay trỏ trang Releases (`generate_appcast
+  --full-release-notes-url`). Cần bản mới để có hiệu lực.
+- C2 — 6a C3 (Chào mừng nền sáng; bảng clipboard HTML / ảnh / hover; Tab + VoiceOver) trên bản phát hành.
+- C3 — nhánh `phase-6c-gioi-thieu` trên GitHub đã merge, xoá được.
+
 **Done khi (Phase 6):** repo `akachick113/vkey` public, CI xanh; Release `v1.0.0` là latest với `appcast.xml`,
 `VKey-1.0.0.zip`, `VKey-1.0.0.md`; chữ ký feed hợp lệ; cài từ zip tải bằng trình duyệt chạy được theo README; "Kiểm tra
 cập nhật…" báo đã mới nhất.
