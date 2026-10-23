@@ -69,12 +69,11 @@ struct AboutPage: View {
 
                     Spacer(minLength: 8)
 
-                    Text("Phát triển bởi **akachick113** · © 2026")
+                    Text("Phát triển bởi **Trung Đức** (akachick113) · © 2026")
                         .font(.system(size: 11))
                         .foregroundStyle(VKTheme.textSecondary)
 
                     VStack(spacing: 5) {
-                        Text("Dựa trên mã nguồn mở OpenKey (© Tuyen Mai) và mkey (© Anh Tuấn), giấy phép GPL v3.")
                         HStack(spacing: 16) {
                             Link("Mã nguồn", destination: URL(string: "https://github.com/akachick113/vkey")!)
                             Link("Ghi công", destination: URL(string: "https://github.com/akachick113/vkey/blob/main/NOTICE.md")!)
