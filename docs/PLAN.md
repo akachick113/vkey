@@ -582,7 +582,10 @@ Các bước:
 - **8a** (Codex, Luna · Medium) — 4 file, 2 commit. Prompt: [`prompts/phase-8a.md`](./prompts/phase-8a.md). Review: Claude chạy
   bản Debug (chưa cấp Trợ năng nên không tranh event tap với `/Applications/VKey.app`), chụp Bộ gõ / Gõ tắt / Hệ thống /
   Giới thiệu ở nền tối + sáng.
-- **8b** — phát hành **1.0.2 (build 4)**? Chờ người dùng chốt (bản vá chỉ đổi giao diện → theo quy trình bản vá của 7b).
+- **8b** — phát hành **1.0.2 (build 4)**. Người dùng chốt 2026-10-24: **ngay sau khi 8a merge**, chỉ gồm thay đổi của 8a, theo
+  quy trình bản vá của 7b (chỉ đổi giao diện → bỏ bước feed cục bộ + bản `old`; tham số thứ năm = `appcast.xml` 1.0.1 đang
+  phát hành, 2 mục → feed 3 mục; kiểm chấp nhận = cập nhật thật 1.0.1 → 1.0.2 qua GitHub; lùi = đánh dấu pre-release). Gồm
+  8b-1 PR version `1.0.2` / `4` + `docs/releases/1.0.2.md`, 8b-2 build + ký + feed + smoke. Claude viết prompt 8b khi 8a merge.
 
 ## Ngoài phạm vi (ghi lại để không tự làm)
 - Target InputMethodKit (prototype ở `~/Desktop/ki12026/…/MKeyInputMethod`, không có git). Xem lại sau Phase 4 nếu cần.
