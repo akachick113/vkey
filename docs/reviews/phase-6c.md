@@ -40,6 +40,9 @@ với ghi chú phát hành mới.
    nguyên. Phần rút gọn lời giới thiệu trong `docs/releases/1.0.0.md` ("Phát hành theo giấy phép GPL v3.") **giữ** như người dùng
    muốn.
 2. **Bước 3 (Gatekeeper)** trong `README.md` và `docs/releases/1.0.0.md` viết theo đúng luồng macOS 27 đã thấy.
+3. **README mục "Nguồn gốc & giấy phép"** — người dùng sửa trên web (`f521f12`, 01:54) để bỏ chữ mkey, còn lại câu cụt
+   "VKey là bản sửa đổi dựa trên engine [OpenKey](…)" không dấu chấm, không còn link `LICENSE` / `NOTICE.md`. Viết lại thành
+   một câu đủ: vẫn **không** nhắc mkey trong README (ý người dùng), giữ giấy phép và trỏ `NOTICE.md` (ghi công đầy đủ, gồm mkey).
 
 ### Hướng dẫn sửa (Codex, cùng session, nhánh `phase-6c-gioi-thieu`)
 1. `git checkout b296283 -- NOTICE.md` (nội dung y nguyên `build/NOTICE.private.md`; kiểm `cmp`), rồi xoá
@@ -58,7 +61,13 @@ với ghi chú phát hành mới.
       `xattr -dr com.apple.quarantine /Applications/VKey.app` trước khi mở.
    ```
    Không đổi dòng nào khác của hai file (ngoài dòng giới thiệu đã sửa ở `84a0a90`).
-4. Gộp thành **một** commit trên nhánh (sửa lại `84a0a90` bằng `git commit --amend` hoặc thêm commit — tuỳ, miễn diff cuối
+4. `git fetch origin && git rebase origin/main` (nhánh phải nằm trên `f521f12`; không xung đột vì `84a0a90` không chạm
+   README). `README.md`, thay dòng duy nhất dưới `## Nguồn gốc & giấy phép` bằng:
+   ```text
+   VKey là bản sửa đổi dựa trên engine [OpenKey](https://github.com/tuyenvm/OpenKey) (© Tuyen Mai), phát hành theo
+   [GPL-3.0](LICENSE); ghi công đầy đủ tại [NOTICE.md](NOTICE.md).
+   ```
+5. Gộp thành **một** commit trên nhánh (sửa lại `84a0a90` bằng `git commit --amend` hoặc thêm commit — tuỳ, miễn diff cuối
    so với `origin/main` đúng như dưới), `scripts/check.sh` pass, push nhánh, **mở PR #1 vào `main` của `origin`
    (`akachick113/vkey`)**, gửi link. Diff cuối phải là:
    `git diff --stat origin/main` → chỉ `README.md` và `docs/releases/1.0.0.md`; `git diff origin/main -- NOTICE.md` rỗng.
