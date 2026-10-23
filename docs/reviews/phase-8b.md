@@ -16,3 +16,14 @@ Kiểm tra trên worktree sạch (`git worktree add --detach ../mkey-review 2d9c
 - Nội dung trùng bản Claude đã đo trước (build Release + ký + feed 3 mục + smoke 4/4, PLAN "8b — kế hoạch chi tiết") ✅.
 
 Phần B: `<SHA Review lần 1 ghi>` = **`2d9cbf6`** — `git diff --stat 2d9cbf6 $MERGE -- . ':!docs/reviews'` phải rỗng.
+
+## Kiểm Phần B — tài sản 1.0.2 (Claude, 2026-10-24)
+`MERGE` = `2c373fe` (squash PR #5, cây = `2d9cbf6`). Worktree `/Users/duc/Developer/vkey-release-1.0.2` @ `2c373fe`, sạch.
+`build/update-1.0.2`: đúng 3 file, SHA-256 khớp báo cáo (`appcast.xml` `44e0e1c4…`, `VKey-1.0.2.zip` `d0993bb9…`,
+`VKey-1.0.2.md` `979627e4…`); `sign_update --verify` feed pass; `verify-update-feed.py` → `PASS: archive, feed, release notes
+signatures and tamper rejection`; ghi chú = `docs/releases/1.0.2.md` @ `2c373fe`. Feed **3 mục**: `1.0.2` build 4 →
+`…/download/v1.0.2/VKey-1.0.2.zip` + `…/VKey-1.0.2.md`, macOS ≥ 14.0; mục `1.0.1` và `1.0.0` **trùng từng byte** feed đang
+phát hành. Giải nén zip → app `1.0.2` / `4`, universal, `codesign --verify --deep --strict` pass, team `8C4YAMZSGP`, CDHash
+`e8a4ba6185273bd45303c62b4147a7a5a3ccad92` (= `build/release-1.0.2/VKey.app`), DR như 1.0.0 / 1.0.1;
+`NSHumanReadableCopyright` mới. Smoke 4/4 (báo cáo; Claude đã chạy cùng quy trình khi đo trước). Không chạy feed cục bộ / bản
+`old` (quy trình bản vá). **Sẵn sàng phát hành.**
