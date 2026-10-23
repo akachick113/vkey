@@ -86,6 +86,3 @@ kiểm thử và phát hành.
 ## Nguồn gốc & giấy phép
 
 VKey là bản sửa đổi dựa trên engine [OpenKey](https://github.com/tuyenvm/OpenKey)
-(© Tuyen Mai) và giao diện, bridge của [mkey](https://github.com/maclifevn/mkey)
-(© Anh Tuấn). Dự án phát hành theo [GPL-3.0](LICENSE); chi tiết ghi công và các
-thay đổi tại [NOTICE.md](NOTICE.md).
