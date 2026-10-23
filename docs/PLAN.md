@@ -495,6 +495,25 @@ Còn tồn (phase sau):
 `VKey-1.0.0.zip`, `VKey-1.0.0.md`; chữ ký feed hợp lệ; cài từ zip tải bằng trình duyệt chạy được theo README; "Kiểm tra
 cập nhật…" báo đã mới nhất.
 
+## Phase 7 — Dọn còn tồn sau VKey 1.0.0
+Người dùng chốt 2026-10-24: **ẩn** nút "Lịch sử phiên bản" (không trỏ sang trang Releases); làm cùng các còn tồn của Phase 6.
+
+Claude đã đo trước (worktree tạm @ `5693b3b`, Release build + `tests/run-update-smoke.py` với `appcast.xml` 1.0.0): hộp thoại "đã
+mới nhất" hiện nút `OK | Lịch sử phiên bản`; `UpdateChecker` thêm `SPUStandardUserDriverDelegate`, truyền `userDriverDelegate:
+self`, `nonisolated func standardUserDriverShouldShowVersionHistory(for:) -> Bool { false }` → chỉ còn `OK`; Debug build không
+cảnh báo (bỏ `nonisolated` → cảnh báo `ConformanceIsolation`). Ca test 79 trong smoke ổn định 3/3, FAIL đúng khi bỏ delegate;
+smoke đủ 4 kịch bản pass.
+
+Các bước:
+- **7a** (Codex, Luna · High) — C1: ẩn nút + ca 79 (smoke). Không đổi version. Prompt:
+  [`prompts/phase-7a.md`](./prompts/phase-7a.md).
+- **Review 7a** (Claude) — chạy smoke; thêm C2: kiểm giao diện còn tồn từ 6a (Chào mừng nền sáng trên bản Debug mới — chưa có
+  quyền Trợ năng nên cửa sổ Chào mừng hiện; bảng clipboard có mục HTML / ảnh / hover; Tab + VoiceOver nhờ người dùng thử tay).
+  Không chạy Debug cùng lúc với `/Applications/VKey.app`.
+- **C3** — xoá nhánh `phase-6c-gioi-thieu` đã merge trên GitHub (người dùng, nút "Delete branch" ở PR #1).
+- **7b** — phát hành **1.0.1 (build 3)** theo `UPDATES.md` (lần đầu có feed cũ làm tham số thứ năm). Người dùng chọn thời
+  điểm: ngay sau 7a, hoặc gộp thêm việc khác.
+
 ## Ngoài phạm vi (ghi lại để không tự làm)
 - Target InputMethodKit (prototype ở `~/Desktop/ki12026/…/MKeyInputMethod`, không có git). Xem lại sau Phase 4 nếu cần.
 - Sửa cảnh báo deprecated `activateIgnoringOtherApps`.
