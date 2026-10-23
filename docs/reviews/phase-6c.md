@@ -115,3 +115,11 @@ git status --short                                                      # rỗng
 Rồi chuyển `build/update-1.0.0` **cũ** vào Thùng rác (Finder / `osascript … to delete`, không `rm -rf`) để không upload nhầm.
 Ghi vào cuối `build/phase-6c-report.md` mục "Sau merge": `MERGE`, output các lệnh trên, SHA-256 3 file mới. Không tag, không
 public, không upload.
+
+### Kết quả "Sau merge" (Claude kiểm lại, 2026-10-24)
+`MERGE` = `445265f` (squash PR #1); `git diff a350c44 445265f -- . ':!docs/reviews'` và so mã với `b296283` đều rỗng ✅.
+`build/update-1.0.0-r2`: đúng 3 file; `sign_update --verify` feed pass; `verify-update-feed.py` → `PASS: archive, feed,
+release notes signatures and tamper rejection`; `VKey-1.0.0.md` = `docs/releases/1.0.0.md` @ `445265f`; một `<item>`, URL
+`https://github.com/akachick113/vkey/releases/download/v1.0.0/VKey-1.0.0.zip`; giải nén zip → app CDHash `f873fef1…` (trùng bản đã
+kiểm cập nhật + Gatekeeper), `codesign --verify --deep --strict` pass. Zip khác byte bộ cũ (nén lại) nhưng app bên trong giống
+hệt. Smoke 4/4 (báo cáo Codex). `build/update-1.0.0` cũ đã vào Thùng rác ✅. **6c-1 xong** — sang bước người dùng phát hành.

@@ -456,6 +456,24 @@ không hỏi Keychain; chứng chỉ hết hạn 2027-08-11.
 4. **Kiểm sau phát hành** (Claude + người dùng) — UPDATES bước 7: chữ ký feed thật, zip 200, tải bằng trình duyệt từ GitHub,
    "Kiểm tra cập nhật…" báo đã mới nhất.
 
+Review 6c-1: [`reviews/phase-6c.md`](./reviews/phase-6c.md) (2 vòng; giữa phase người dùng nhờ Codex xoá `NOTICE.md` + tự
+sửa README trên web để bỏ chữ mkey → sau khi Claude giải thích, người dùng chọn **giữ `NOTICE.md`**).
+
+**✅ 6c-1 xong (PR #1 của `vkey`, squash `445265f` = nội dung `a350c44` đã review; feed r2 Claude kiểm lại).** Quyết định đã
+chốt (Phase sau phải theo):
+- **Tag `v1.0.0` = `445265f`.** App đã ký build từ `b296283` (mã `Sources` / `project.yml` / `Vendor` / `scripts` / `tests` /
+  `.github` trùng `445265f`), CDHash `f873fef1d2348eba81a65ae2a2ef1206785b30d0` = bản đang cài ở `/Applications`.
+- Tài sản phát hành: `/Users/duc/Developer/vkey-release-1.0.0/build/update-1.0.0-r2/` — `appcast.xml` (`1e1fbba2…`),
+  `VKey-1.0.0.zip` (`f4640087…`), `VKey-1.0.0.md` (`dfb66ab2…` = `docs/releases/1.0.0.md` @ `445265f`). Feed trỏ
+  `…/releases/download/v1.0.0/`, chữ ký hợp lệ, smoke 4/4. Bộ cũ `update-1.0.0` (ghi chú cũ) đã bỏ.
+- Gatekeeper macOS 27 (tải thật bằng Safari): *"VKey" Not Opened* (Move to Trash / Done) → Done → Quyền riêng tư & Bảo mật →
+  **Open Anyway** → Touch ID → mở được, giữ quyền Trợ năng. README + ghi chú phát hành bước 3 viết theo luồng này.
+- Ghi công: `NOTICE.md` giữ (nút **Ghi công** trong app trỏ tới nó); README "Nguồn gốc & giấy phép" không nhắc mkey nhưng
+  giữ GPL-3.0 + link `NOTICE.md`; ghi chú phát hành chỉ ghi "Phát hành theo giấy phép GPL v3."
+- Không build lại khi chỉ đổi tài liệu: tạo feed mới từ app đã ký sẵn vào thư mục mới, tag commit chứa tài liệu mới.
+
+Còn tồn (kiểm sau phát hành): 6a C3 (Chào mừng nền sáng; bảng clipboard HTML / ảnh / hover; Tab + VoiceOver).
+
 **Done khi (Phase 6):** repo `akachick113/vkey` public, CI xanh; Release `v1.0.0` là latest với `appcast.xml`,
 `VKey-1.0.0.zip`, `VKey-1.0.0.md`; chữ ký feed hợp lệ; cài từ zip tải bằng trình duyệt chạy được theo README; "Kiểm tra
 cập nhật…" báo đã mới nhất.
