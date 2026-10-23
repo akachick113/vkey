@@ -9,7 +9,8 @@ Repo có sẵn (clone từ `maclifevn/mkey`): hiện trạng, baseline, quy ư�
 ## Quy tắc bắt buộc
 1. Làm đúng phạm vi prompt của phase. Thấy cần làm thêm → ghi vào báo cáo PR, không tự làm.
 2. Không push `main`. Mỗi phase một nhánh `phase-N-<tên>`, Conventional Commits (mô tả tiếng Việt), **mở PR** vào
-   `main` của `origin` (không bao giờ mở PR vào `upstream` = `maclifevn/mkey`) và gửi link.
+   `main` của `origin` = `akachick113/vkey` (không bao giờ mở PR vào `upstream` = `maclifevn/mkey` hay `archive` =
+   `akachick113/mkey-jis`) và gửi link.
 3. Không sửa expectation của test cũ cho khớp output mới nếu không giải thích trong PR.
 4. Mỗi ca test bắt buộc trong prompt là **một test riêng**, tên test nhắc tới số ca.
 5. Không thêm / nâng dependency (Sparkle giữ `exactVersion` trong `project.yml`). Không commit `VKey.xcodeproj`.

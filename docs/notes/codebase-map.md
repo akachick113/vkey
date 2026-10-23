@@ -9,6 +9,8 @@
   loại trừ ứng dụng, cập nhật qua Sparkle.
 - Đang được bảo trì: commit gần nhất 2026-09-21 (1.6.1). Tác giả: `maclifevn` (26 commit), `Theodore` (21 commit).
 - Nguồn: **clone làm dự án riêng** (`upstream` = `maclifevn/mkey`, chỉ fetch). License: **GPL-3.0** (kế thừa OpenKey).
+  Từ Phase 6b (2026-10-24): `origin` = `akachick113/vkey`, lịch sử mới (commit đầu `b766993` = cây sau Phase 6a); lịch sử
+  cũ ở `archive` = `akachick113/mkey-jis` (private).
   App phát hành bản sửa đổi → phải giữ GPL-3.0 và công bố mã nguồn.
 
 ## 2. Stack & môi trường
