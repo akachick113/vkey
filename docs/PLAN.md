@@ -587,6 +587,32 @@ Các bước:
   phát hành, 2 mục → feed 3 mục; kiểm chấp nhận = cập nhật thật 1.0.1 → 1.0.2 qua GitHub; lùi = đánh dấu pre-release). Gồm
   8b-1 PR version `1.0.2` / `4` + `docs/releases/1.0.2.md`, 8b-2 build + ký + feed + smoke. Claude viết prompt 8b khi 8a merge.
 
+Review 8a: [`reviews/phase-8a.md`](./reviews/phase-8a.md) (1 vòng, Approved; ảnh trước / sau dựng từ mã view thật).
+
+**✅ 8a xong (PR #4 của `vkey`, squash `daf0d10` = nội dung `3517201` đã review).** Quyết định đã chốt:
+- Giới thiệu: `Phát triển bởi **Trung Đức** (akachick113) · © 2026`, không có câu ghi công; ghi công trong giao diện = link
+  **Ghi công** (→ `NOTICE.md`) + link GPL v3 — **phải giữ** (GPL v3 §5). `NSHumanReadableCopyright` = `VKey © 2026 Trung Đức
+  (akachick113). GPL v3.`
+- Mọi `Toggle` kiểu `.switch` dùng `.controlSize(.small)` (DESIGN "Switch"); switch mới phải theo.
+- Claude commit docs **chỉ qua worktree `main` riêng** (`../vkey-main-docs`): checkout chính có thể đang ở nhánh của Codex.
+
+Còn tồn: chưa xem cửa sổ cài đặt trong app chạy thật (Debug chưa có Trợ năng) → kiểm ở bước chấp nhận 8b.
+
+### 8b — kế hoạch chi tiết (Claude, 2026-10-24)
+Đã đo trước (worktree tạm @ `daf0d10`, Info.plist tạm `1.0.2` / `4` + `docs/releases/1.0.2.md` như prompt): build Release
+universal + `sign-release.sh` pass (DR như cũ); `build-update-feed.sh … "$BIN" <appcast 1.0.1 tải từ GitHub>` → `Wrote 1 new
+update, updated 0 existing updates, and removed 0 old updates`, feed **3 mục** (1.0.2 build 4 → `…/download/v1.0.2/…`; 1.0.1,
+1.0.0 giữ URL + chữ ký cũ), kiểm chữ ký pass; smoke 4/4.
+1. **8b-1** (Codex, Luna · High) — prompt [`prompts/phase-8b.md`](./prompts/phase-8b.md) Phần A: `1.0.2` / `4` +
+   `docs/releases/1.0.2.md`. Claude review → người dùng squash merge (tiêu đề `chore: …`).
+2. **8b-2** (Codex, cùng session) — Phần B: build + ký + feed (tham số thứ năm = feed 1.0.1) + smoke trong worktree
+   `../vkey-release-1.0.2` từ commit merge. Không commit. Claude kiểm tài sản.
+3. **Người dùng phát hành** — tag `v1.0.2` = commit merge, Release `VKey 1.0.2` (latest) + 3 file.
+4. **Kiểm chấp nhận** — cập nhật thật 1.0.1 → 1.0.2 qua GitHub trên `/Applications/VKey.app`: 1.0.2 / 4, gõ được không cấp lại
+   Trợ năng, "Kiểm tra cập nhật…" → chỉ nút OK; xem cửa sổ cài đặt (công tắc nhỏ ở Bộ gõ / Gõ tắt / Hệ thống, trang Giới thiệu).
+   Lùi = đánh dấu Release v1.0.2 là pre-release.
+5. Dọn: chép 3 tài sản sang `build/release-1.0.2-assets/`, xoá worktree phát hành (người dùng chạy lệnh).
+
 ## Ngoài phạm vi (ghi lại để không tự làm)
 - Target InputMethodKit (prototype ở `~/Desktop/ki12026/…/MKeyInputMethod`, không có git). Xem lại sau Phase 4 nếu cần.
 - Sửa cảnh báo deprecated `activateIgnoringOtherApps`.
