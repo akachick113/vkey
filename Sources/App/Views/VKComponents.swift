@@ -166,7 +166,7 @@ struct VKSwitchRow: View {
     }
     var body: some View {
         VKRow(title: title) {
-            Toggle(title, isOn: $isOn).labelsHidden().toggleStyle(.switch).tint(VKTheme.accent)
+            Toggle(title, isOn: $isOn).labelsHidden().toggleStyle(.switch).controlSize(.small).tint(VKTheme.accent)
         }
     }
 }
