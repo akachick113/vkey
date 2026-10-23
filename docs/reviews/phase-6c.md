@@ -83,3 +83,35 @@ Tạo lại feed từ **app đã ký sẵn** với ghi chú mới vào thư mụ
   trên bản cài từ GitHub.
 - Quy trình: Codex nhận yêu cầu mới của người dùng giữa phase (sửa tài liệu, commit trên nhánh ở checkout chính) — đã ghi rõ
   trong báo cáo; chấp nhận như ngoại lệ người dùng cho.
+
+## Review lần 2 — PR #1 @ `a350c44` (cha `9e49655` = `origin/main`)
+
+**Kết luận: Approved.** Người dùng squash merge PR #1, rồi Codex làm mục "Sau merge" dưới đây (cùng session).
+
+- Diff so với `main`: đúng 2 file `README.md`, `docs/releases/1.0.0.md`; câu chữ bước 3 (cả hai file) và câu "Nguồn gốc &
+  giấy phép" **khớp từng chữ** hướng dẫn lần 1 ✅. `NOTICE.md` trên `main` không đổi; `build/NOTICE.private.md` đã xoá ✅.
+- `git diff --stat b296283 a350c44 -- Sources project.yml Vendor scripts tests .github` rỗng → app đã ký
+  (`build/release-1.0.0/VKey.app`, CDHash `f873fef1…`) đúng là bản build từ mã của commit sẽ tag ✅.
+- `scripts/check.sh` trên worktree sạch @ `a350c44`: exit 0 — `14 / 53 / 8 / 6 / 6 / 5` ✅.
+
+### Sau merge (Codex) — tạo lại feed với ghi chú mới, không build lại app
+Chạy đúng thứ tự; bước nào lệch → dừng, ghi báo cáo. Không sửa / ký lại `build/release-1.0.0`.
+```bash
+BIN=/Users/duc/Developer/mkey/build/DerivedData/SourcePackages/artifacts/sparkle/Sparkle/bin
+REL=/Users/duc/Developer/vkey-release-1.0.0
+git -C /Users/duc/Developer/mkey fetch origin
+MERGE=$(git -C /Users/duc/Developer/mkey rev-parse origin/main)       # commit squash của PR #1 — sẽ tag v1.0.0
+git -C /Users/duc/Developer/mkey log -1 --format='%h %s' $MERGE        # phải là commit squash PR #1
+git -C /Users/duc/Developer/mkey diff --stat a350c44 $MERGE            # phải rỗng (cây squash = cây đã review)
+git -C /Users/duc/Developer/mkey diff --stat b296283 $MERGE -- Sources project.yml Vendor scripts tests .github  # rỗng
+cd $REL && git checkout --detach $MERGE && git status --short          # rỗng; build/ không bị đụng (gitignore)
+scripts/build-update-feed.sh build/release-1.0.0/VKey.app docs/releases/1.0.0.md build/update-1.0.0-r2 "$BIN"
+diff docs/releases/1.0.0.md build/update-1.0.0-r2/VKey-1.0.0.md && echo notes-ok
+grep -E 'url=|sparkle:releaseNotesLink|sparkle:version|sparkle:shortVersionString' build/update-1.0.0-r2/appcast.xml
+python3 tests/run-update-smoke.py build/update-1.0.0-r2/appcast.xml
+ls -l build/update-1.0.0-r2 && shasum -a 256 build/update-1.0.0-r2/*
+git status --short                                                      # rỗng
+```
+Rồi chuyển `build/update-1.0.0` **cũ** vào Thùng rác (Finder / `osascript … to delete`, không `rm -rf`) để không upload nhầm.
+Ghi vào cuối `build/phase-6c-report.md` mục "Sau merge": `MERGE`, output các lệnh trên, SHA-256 3 file mới. Không tag, không
+public, không upload.
